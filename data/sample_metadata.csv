@@ -1,0 +1,25 @@
+Barcode,Tank,Primer,SampleSite,SampleContent,Date,Comment,WellID,SampleID,Label,Data_chr,SampleSite_Tank,treatment,type,ManureID,Experiment
+barcode42,NA,v4ont30cyc,CTRL,CTRL,NA,NA,D6,CTRL_CTRL_NA_NA_D6,CTRL_NA_NA,NA,CTRL_NA,NA,NA,NA,NA
+barcode54,NA,v4ont30cyc,CTRL,CTRL,NA,NA,E6,CTRL_CTRL_NA_NA_E6,CTRL_NA_NA,NA,CTRL_NA,NA,NA,NA,NA
+barcode08,L2,v4ont30cyc,Løkken,gylle,2024-03-21,Start,A8,gylle_Løkken_L2_2024-03-21_A8,Løkken_L2_2024-03-21,2024-03-21,Løkken_L2,1,Untreated,A_CTR,Experiment 1
+barcode20,L4,v4ont30cyc,Fyn,gylle,2024-04-25,Start,B8,gylle_Fyn_L4_2024-04-25_B8,Fyn_L4_2024-04-25,2024-04-25,Fyn_L4,2,Untreated,B_CTR,Experiment 1
+barcode32,L6,v4ont30cyc,Viborg,gylle,2024-03-14,Start,C8,gylle_Viborg_L6_2024-03-14_C8,Viborg_L6_2024-03-14,2024-03-14,Viborg_L6,3,Untreated,C_CTR,Experiment 1
+barcode44,L1,v4ont30cyc,Løkken,gylle,2024-03-04,Start,D8,gylle_Løkken_L1_2024-03-04_D8,Løkken_L1_2024-03-04,2024-03-04,Løkken_L1,4,Silvair,A_SIL,Experiment 1
+barcode56,L5,v4ont30cyc,Fyn,gylle,2024-03-08,Start,E8,gylle_Fyn_L5_2024-03-08_E8,Fyn_L5_2024-03-08,2024-03-08,Fyn_L5,5,Silvair,B_SIL,Experiment 1
+barcode68,L2,v4ont30cyc,Løkken,gylle,2024-08-08,End,F8,gylle_Løkken_L2_2024-08-08_F8,Løkken_L2_2024-08-08,2024-08-08,Løkken_L2,1,Untreated,A_CTR,Experiment 1
+barcode80,L4,v4ont30cyc,Fyn,gylle,2024-08-08,End,G8,gylle_Fyn_L4_2024-08-08_G8,Fyn_L4_2024-08-08,2024-08-08,Fyn_L4,2,Untreated,B_CTR,Experiment 1
+barcode92,L6,v4ont30cyc,Viborg,gylle,2024-08-08,End,H8,gylle_Viborg_L6_2024-08-08_H8,Viborg_L6_2024-08-08,2024-08-08,Viborg_L6,3,Untreated,C_CTR,Experiment 1
+barcode09,L1,v4ont30cyc,Løkken,gylle,2024-08-08,End,A9,gylle_Løkken_L1_2024-08-08_A9,Løkken_L1_2024-08-08,2024-08-08,Løkken_L1,4,Silvair,A_SIL,Experiment 1
+barcode21,L5,v4ont30cyc,Fyn,gylle,2024-08-08,End,B9,gylle_Fyn_L5_2024-08-08_B9,Fyn_L5_2024-08-08,2024-08-08,Fyn_L5,5,Silvair,B_SIL,Experiment 1
+barcode33,L2,v4ont30cyc,Viborg,gylle,2025-05-13,Start,C9,gylle_Viborg_L2_2025-05-13_C9,Viborg_L2_2025-05-13,2025-05-13,Viborg_L2,6,Untreated,D_CTR,Experiment 2
+barcode45,L4,v4ont30cyc,Viborg,gylle,2025-05-12,Start,D9,gylle_Viborg_L4_2025-05-12_D9,Viborg_L4_2025-05-12,2025-05-12,Viborg_L4,7,Untreated,E_CTR,Experiment 2
+barcode57,L6,v4ont30cyc,Hvilsom,gylle,2025-05-09,Start,E9,gylle_Hvilsom_L6_2025-05-09_E9,Hvilsom_L6_2025-05-09,2025-05-09,Hvilsom_L6,8,Untreated,F_CTR,Experiment 2
+barcode69,L1,v4ont30cyc,Thisted,gylle,2025-05-08,Start,F9,gylle_Thisted_L1_2025-05-08_F9,Thisted_L1_2025-05-08,2025-05-08,Thisted_L1,9,Bovaer,G_BOV,Experiment 2
+barcode81,L3,v4ont30cyc,Skjern,gylle,2025-05-15,Start,G9,gylle_Skjern_L3_2025-05-15_G9,Skjern_L3_2025-05-15,2025-05-15,Skjern_L3,10,Bovaer,H_BOV,Experiment 2
+barcode93,L5,v4ont30cyc,Højslev,gylle,2025-05-14,Start,H9,gylle_Højslev_L5_2025-05-14_H9,Højslev_L5_2025-05-14,2025-05-14,Højslev_L5,11,Bovaer,I_BOV,Experiment 2
+barcode10,L2,v4ont30cyc,Viborg,gylle,2025-09-01,End,A10,gylle_Viborg_L2_2025-09-01_A10,Viborg_L2_2025-09-01,2025-09-01,Viborg_L2,6,Untreated,D_CTR,Experiment 2
+barcode22,L4,v4ont30cyc,Viborg,gylle,2025-09-01,End,B10,gylle_Viborg_L4_2025-09-01_B10,Viborg_L4_2025-09-01,2025-09-01,Viborg_L4,7,Untreated,E_CTR,Experiment 2
+barcode34,L6,v4ont30cyc,Hvilsom,gylle,2025-09-01,End,C10,gylle_Hvilsom_L6_2025-09-01_C10,Hvilsom_L6_2025-09-01,2025-09-01,Hvilsom_L6,8,Untreated,F_CTR,Experiment 2
+barcode46,L1,v4ont30cyc,Thisted,gylle,2025-09-01,End,D10,gylle_Thisted_L1_2025-09-01_D10,Thisted_L1_2025-09-01,2025-09-01,Thisted_L1,9,Bovaer,G_BOV,Experiment 2
+barcode58,L3,v4ont30cyc,Skjern,gylle,2025-09-01,End,E10,gylle_Skjern_L3_2025-09-01_E10,Skjern_L3_2025-09-01,2025-09-01,Skjern_L3,10,Bovaer,H_BOV,Experiment 2
+barcode70,L5,v4ont30cyc,Højslev,gylle,2025-09-01,End,F10,gylle_Højslev_L5_2025-09-01_F10,Højslev_L5_2025-09-01,2025-09-01,Højslev_L5,11,Bovaer,I_BOV,Experiment 2

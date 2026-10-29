@@ -1,0 +1,1897 @@
+---
+title: "Microbial community changes during slurry storage"
+author: "Marie Riisgaard-Jensen"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    number_sections: true
+    code_folding: hide
+    fig_caption: true
+    self_contained: true
+
+---
+
+```{r setup, include=FALSE}
+required_packages <- c(
+  "ampvis2", "tidyverse", "patchwork", "vegan", "ggrepel", "knitr"
+)
+missing_packages <- required_packages[
+  !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
+]
+if (length(missing_packages)) {
+  stop("Install these packages before knitting: ",
+       paste(missing_packages, collapse = ", "))
+}
+library(ampvis2)
+library(tidyverse)
+library(patchwork)
+library(vegan)
+library(ggrepel)
+library(stringr)
+
+
+WD <- "C:/Users/HD95LP/OneDrive - Aalborg Universitet/visual_studio_code/2026_Manure_Storage"
+Output_path <- file.path(WD, "/output")
+
+
+```
+
+# Overview
+
+This report compares paired **Start** and **End** samples from each plant–tank
+combination. Controls are included in quality control and the control-inclusive
+ordination, then excluded from subsequent community analyses.
+
+
+# Data preparation
+
+```{r data-2, include=FALSE}
+
+source(paste0(WD, "/scripts/tidy_long_function.R"))
+
+
+input_files <- file.path(
+  WD, "data/output",
+  c("abund_table.tsv", "zOTUs.sintax", "totalreads.csv")
+)
+sample_data <- vroom::vroom(paste0(WD, "/data/sample_metadata.csv"))
+
+# ASV based 
+d_ASV_V4 <- amp_load(otutable = paste0(WD, "/data/output/abund_table.tsv"),
+              taxonomy = paste0(WD, "/data/output/zOTUs.sintax"),
+              metadata = sample_data
+              ) 
+# Total reads 
+summary_reads_ASV <- read.csv(paste0(WD, "/data/output/totalreads.csv"), header = FALSE, col.names = c("Barcode", "total_reads")) 
+
+merged_alpha_div <- d_ASV_V4 %>% amp_alpha_diversity() %>% mutate(sequence_unit = "ASV") %>%
+      left_join(summary_reads_ASV, by = join_by(Barcode))
+
+d_long <- d_ASV_V4 %>% 
+  amp_subset_samples(SampleContent != "CTRL") %>% 
+  tidy_midas_global(., SampleID_column_name = "SampleID") %>% 
+  mutate(samples = map(.x = samples, ~group_by(.x, Family) %>%
+                               mutate(rel_abun_family = sum(rel_abun_ASV)) %>%
+                              ungroup())) %>% 
+  mutate(samples = map(.x = samples, ~group_by(.x, Order) %>%
+                               mutate(rel_abun_order = sum(rel_abun_ASV)) %>%
+                              ungroup())) %>% 
+  mutate(samples = map(.x = samples, ~group_by(.x, Phylum) %>%
+                               mutate(rel_abun_phylum = sum(rel_abun_ASV)) %>%
+                              ungroup()))
+
+
+```
+
+## Sample overview
+
+```{r sample-overview, echo=FALSE}
+knitr::kable(
+  sample_data %>%
+    filter(SampleContent != "CTRL") %>%
+    arrange(treatment, Comment) %>%
+    select(SampleSite, ManureID, Experiment, Tank, treatment, type, Comment, Date),
+  col.names = c("Plant", "Experiment", "ManureID","Tank", "Treatment", "Product", "Timepoint", "Date")
+)
+```
+
+# Quality control {.tabset}
+
+Controls are retained in these plots. Mapped reads are expressed as a percentage
+of the total reads recorded for the corresponding barcode.
+
+### Number of ASVs
+
+```{r number-of-asvs}
+merged_alpha_div %>% 
+   ggplot(
+    aes(x = SampleID, y = uniqueOTUs)
+  ) + geom_col(fill = "#39789c", width = 0.75) +
+  labs(x = NULL, y = "Observed ASVs") + 
+  coord_flip()
+```
+
+### Number of Reads
+
+```{r number-of-reads}
+merged_alpha_div %>% 
+  ggplot(
+    aes(x = SampleID, y = Reads)
+  ) + 
+    geom_col(fill = "#39789c", width = 0.75) +
+  labs(x = NULL, y = "Mapped reads") +
+  coord_flip()
+
+```
+
+### Mapped reads 
+
+```{r mapped-reads}
+merged_alpha_div %>% 
+  mutate(p = if_else(total_reads > 0, Reads / total_reads * 100, NA_real_)) %>% 
+  ggplot(
+    aes(x = SampleID, y = p, fill = SampleSite )
+  ) + 
+      geom_col(width = 0.75) +
+  labs(x = NULL, y = "Mapped reads (%)", fill = "Plant") + 
+  coord_flip()
+```
+
+### Rarefaction curve
+
+```{r rarefaction-curve, fig.width=13, fig.height=9, out.width="100%", fig.align="center"}
+
+amp_rarecurve(d_ASV_V4, color_by = "SampleID", stepsize = 1000) 
+
+```
+
+
+### Ordination w. controls 
+
+```{r including-controls}
+
+amp_ordinate(d_all, sample_color_by = "SampleContent") +
+  labs(title = "Community ordination including controls")
+
+```
+
+### Ordination excl. controls 
+
+```{r excluding-controls, fig.width=9, fig.height=9, out.width="100%", fig.align="center"}
+d_ASV_V4 <- d_ASV_V4 %>% 
+  amp_subset_samples(SampleContent != "CTRL")
+
+amp_ordinate(d_ASV_V4, sample_color_by = c("SampleSite_Tank"), 
+             sample_label_by = "Data_chr", 
+             sample_trajectory = "SampleSite_Tank",
+             sample_point_size = 4, 
+             )
+
+```
+
+
+# Figure XX: Heatmap 
+
+```{r}
+
+#midas_metadata <- readr::read_delim(
+#  "C:/Users/HD95LP/OneDrive - Aalborg Universitet/visual_studio_code/2023_MiDAS_OK_testing/data/MiDAS_Metadata.csv",
+#  delim = ";",
+#  col_types = readr::cols(.default = readr::col_character()),
+#  na = c("", "NA", "na"),
+#  show_col_types = FALSE,
+#  name_repair = "unique"
+#)
+
+
+
+## Names must match the metadata column headings.
+#function_labels <- c(
+#  "Fermentation"           = "Fermentation",
+#  "Acetogen"               = "Acetogen",
+#  "Methanogen"             = "Methanogen",
+#  "Short-chain fatty acids" = "SCFAs",
+#  "Sugars"                 = "Sugars",
+#  "Proteins/amino acids"   = "Proteins / amino acids"#,
+#  #"Sulfate reduction"      = "Sulfate reduction"
+#)
+
+# Optional additional annotation:
+# function_labels <- c(function_labels, "Nitrite reduction" = "Nitrite reduction")
+
+wanted_columns <- unlist(
+  lapply(
+    names(function_labels),
+    function(x) paste0(x, c(":In situ", ":Other"))
+  )
+)
+
+stopifnot(all(wanted_columns %in% names(midas_metadata)))
+
+midas_functions <- midas_metadata %>%
+  transmute(
+    GenusKey = clean_genus(`Canonical Name`),
+    Domain = str_remove(Kingdom, "^[a-z]__"),
+    across(all_of(wanted_columns))
+  ) %>%
+  pivot_longer(
+    cols = all_of(wanted_columns),
+    names_to = c("Function", "Source"),
+    names_pattern = "^(.*):(In situ|Other)$",
+    values_to = "Status"
+  ) %>%
+  mutate(
+    Status = str_to_lower(str_trim(Status)),
+    Status = coalesce(Status, "unknown")
+  ) %>%
+  distinct()
+
+# Prevent ambiguous joins.
+conflicts <- midas_functions %>%
+  count(Domain, GenusKey, Function, Source) %>%
+  filter(n > 1)
+
+if (nrow(conflicts) > 0) {
+  stop("Conflicting MiDAS annotations found for the same genus/function/source.")
+}
+
+unexpected <- setdiff(
+  unique(midas_functions$Status),
+  c("pos", "neg", "var", "unknown")
+)
+
+if (length(unexpected) > 0) {
+  stop("Unexpected annotation values: ", paste(unexpected, collapse = ", "))
+}
+
+
+midas_functions <- midas_functions %>%
+  group_by(Domain, GenusKey, Function) %>%
+  summarise(
+    Status = {
+      known <- unique(Status[
+        !is.na(Status) & Status %in% c("pos", "neg", "var")
+      ])
+
+      if (length(known) == 0) {
+        "unknown"
+      } else if (length(known) == 1) {
+        known
+      } else {
+        "var"
+      }
+    },
+    .groups = "drop"
+  )
+
+function_labels["Proteins/amino acids"] <- "Proteins"
+
+```
+
+
+```{r}
+
+# Harmonise names such as g__Ca._Amarolinea and Ca Amarolinea.
+clean_genus <- function(x) {
+  x %>%
+    str_remove("^[a-z]__") %>%
+    str_replace_all("_", " ") %>%
+    str_replace(regex("^Ca\\.?\\s+", ignore_case = TRUE), "Ca ") %>%
+    str_squish() %>%
+    str_to_lower()
+}
+
+taxon_label <- function(taxon, parent, rank) {
+
+  # Format one label at a time.
+  if (is.na(taxon) || !nzchar(taxon)) {
+    return(NA_character_)
+  }
+
+  clean_text <- function(x) {
+    if (is.na(x) || !nzchar(x)) return("")
+
+    x <- stringr::str_remove(x, "^[a-z]__")
+
+    # Remove the primer marker.
+    x <- stringr::str_remove_all(
+      x,
+      stringr::regex("V1V3[ _-]*", ignore_case = TRUE)
+    )
+
+    # Rename Zotu identifiers, including those preceded by "_".
+    x <- stringr::str_replace_all(
+      x,
+      stringr::regex(
+        "(?<![[:alnum:]])Zotu[ _-]*(\\d+)",
+        ignore_case = TRUE
+      ),
+      "ASV\\1"
+    )
+
+    # Preserve underscores in taxonomic names.
+    stringr::str_squish(x)
+  }
+
+  format_name <- function(x) {
+    if (!nzchar(x)) return("")
+
+    # Separate a terminal ASV identifier from the taxonomic name.
+    asv_pattern <- "(?<![[:alnum:]])ASV\\d+$"
+    asv <- stringr::str_extract(x, asv_pattern)
+
+    name <- stringr::str_remove(x, asv_pattern)
+    name <- stringr::str_remove(name, "[ _-]+$")
+    name <- stringr::str_trim(name)
+
+    # Recognise unclassified labels separated by spaces or underscores.
+    unclassified_pattern <- stringr::regex(
+      "^unclassified(?:[ _]+|$)",
+      ignore_case = TRUE
+    )
+
+    unclassified <- stringr::str_detect(
+      name, unclassified_pattern
+    )
+
+    heading <- ""
+
+    if (unclassified) {
+      name <- stringr::str_remove(
+        name, unclassified_pattern
+      )
+
+      rank_pattern <- "^([dkpcofgs])(?:[ _]+|$)"
+      rank_code <- stringr::str_match(
+        name, rank_pattern
+      )[, 2]
+
+      if (!is.na(rank_code)) {
+        name <- stringr::str_remove(name, rank_pattern)
+      } else {
+        rank_code <- switch(
+          tolower(rank),
+          domain = "d",
+          kingdom = "k",
+          phylum = "p",
+          class = "c",
+          order = "o",
+          family = "f",
+          genus = "g",
+          species = "s",
+          NA_character_
+        )
+      }
+
+      heading <- if (!is.na(rank_code)) {
+        paste0("Unclas. (", rank_code, ")")
+      } else {
+        "Unclas."
+      }
+    }
+
+    # Same pattern for detection AND replacement.
+    # Matches Ca._Name, Ca. Name, Ca_Name and Ca Name.
+    ca_pattern <- "^Ca\\.?[ _]+"
+
+    if (stringr::str_detect(name, ca_pattern)) {
+      name <- stringr::str_replace(
+        name,
+        ca_pattern,
+        "*Ca.* "
+      )
+
+    } else if (
+      nzchar(name) &&
+      !stringr::str_detect(
+        name,
+        stringr::regex("midas", ignore_case = TRUE)
+      ) &&
+      !unclassified
+    ) {
+      # Italicise ordinary classified names.
+      name <- paste0("*", name, "*")
+    }
+
+    parts <- c(heading, name, asv)
+    paste(parts[!is.na(parts) & nzchar(parts)], collapse = " ")
+  }
+  
+    clean <- clean_text(taxon)
+    parent_clean <- clean_text(parent)
+  
+    is_unclassified <- stringr::str_detect(
+      clean,
+      stringr::regex(
+        "^unclassified(?:[ _]+|$)",
+        ignore_case = TRUE
+      )
+    )
+  
+    # Add parent information only for classified midas taxa.
+    if (
+      !is_unclassified &&
+      stringr::str_detect(
+        clean,
+        stringr::regex("midas", ignore_case = TRUE)
+      ) &&
+      nzchar(parent_clean)
+    ) {
+      return(paste0(
+        format_name(parent_clean),
+        "; ",
+        format_name(clean)
+      ))
+    }
+  
+    format_name(clean)
+  }
+
+
+# Also requires ggtext and ggh4x.
+
+build_manure_heatmaps <- function(
+    long_data,
+    top_bacteria = 10,
+    top_archaea = 7,
+    cell_label_min = 0.01,
+    domain_col = "Kingdom",
+    function_data = midas_functions,
+    function_names = function_labels
+) {
+
+  # Sample metadata ---------------------------------------------------------
+  meta <- long_data %>%
+    ungroup() %>%
+    transmute(
+      SampleID,
+      Experiment = as.character(Experiment),
+      ManureID = as.character(ManureID),
+      Comment = as.character(Comment)
+    ) %>%
+    distinct()
+
+  if (anyDuplicated(meta$SampleID)) {
+    stop("Each SampleID must have one metadata row.")
+  }
+
+  if (anyNA(meta)) {
+    stop("SampleID, Experiment, ManureID and Comment must not contain NA.")
+  }
+
+  if (!all(meta$Comment %in% c("Start", "End"))) {
+    stop("Comment must contain only 'Start' and 'End'.")
+  }
+
+  # Retain the original manure order within each experiment.
+  manure_order <- long_data %>%
+    ungroup() %>%
+    distinct(Experiment, ManureID, treatment) %>%
+    arrange(Experiment, as.numeric(as.character(treatment))) %>%
+    pull(ManureID) %>%
+    unique()
+  
+  
+
+  meta <- meta %>%
+    mutate(
+      Experiment = factor(Experiment, levels = sort(unique(Experiment))),
+      ManureID = factor(ManureID, levels = manure_order),
+      Comment = factor(Comment, levels = c("Start", "End"))
+    )
+
+  nested <- long_data %>%
+    ungroup() %>%
+    select(SampleID, samples) %>%
+    unnest(samples)
+
+  required <- c(domain_col, "Genus", "Family", "rel_abun_genus")
+
+  if (!all(required %in% names(nested))) {
+    stop(
+      "Missing columns inside samples: ",
+      paste(setdiff(required, names(nested)), collapse = ", ")
+    )
+  }
+
+  # Genus abundances can be repeated across species rows.
+  # Remove identical copies rather than summing them.
+  abundance <- nested %>%
+    transmute(
+      SampleID,
+      Domain = sub("^[a-z]__", "", as.character(.data[[domain_col]])),
+      Parent = coalesce(as.character(Family), ""),
+      Taxon = as.character(Genus),
+      Abundance = rel_abun_genus
+    ) %>%
+    filter(Domain %in% c("Bacteria", "Archaea")) %>%
+    mutate(
+      Taxon = if_else(
+        is.na(Taxon) | trimws(Taxon) == "",
+        paste0(
+          "Unclassified f ",
+          if_else(Parent == "", "unknown family", sub("^[a-z]__", "", Parent))
+        ),
+        Taxon
+      )
+    ) %>%
+    distinct()
+
+  if (!is.numeric(abundance$Abundance) ||
+      anyNA(abundance$Abundance) ||
+      any(!is.finite(abundance$Abundance)) ||
+      any(abundance$Abundance < 0)) {
+    stop("rel_abun_genus must contain finite, non-negative numeric abundances.")
+  }
+
+  conflicts <- abundance %>%
+    count(SampleID, Domain, Taxon, Parent) %>%
+    filter(n > 1)
+
+  if (nrow(conflicts) > 0) {
+    stop("Conflicting genus abundances found within a sample.")
+  }
+
+  # Give each taxon/parent combination a unique plotting key.
+  taxonomy <- abundance %>%
+    distinct(Domain, Taxon, Parent) %>%
+    mutate(TaxonKey = paste0("taxon_", row_number()))
+
+  abundance <- abundance %>%
+    left_join(taxonomy, by = c("Domain", "Taxon", "Parent"))
+
+  # Include explicit zeros for taxa absent from a sample.
+  complete_data <- crossing(
+    SampleID = meta$SampleID,
+    TaxonKey = taxonomy$TaxonKey
+  ) %>%
+    left_join(
+      abundance %>% select(SampleID, TaxonKey, Abundance),
+      by = c("SampleID", "TaxonKey")
+    ) %>%
+    mutate(Abundance = replace_na(Abundance, 0)) %>%
+    left_join(taxonomy, by = "TaxonKey") %>%
+    left_join(meta, by = "SampleID")
+
+  # Shared abundance scale -------------------------------------------------
+  bin_levels <- c(
+    "0", "<0.01", "0.01–<0.1", "0.1–<1",
+    "1–<2", "2–<5", "≥5"
+  )
+
+  bin_colours <- setNames(
+    c(
+      "#E8E8E8", "#FFFFFF", "#FFF5EB", "#F5C9B0",
+      "#EC9E75", "#E2733B", "#B63600"
+    ),
+    bin_levels
+  )
+
+
+  make_heatmap <- function(domain, n_top) {
+
+  domain_data <- complete_data %>%
+    filter(Domain == domain)
+
+  if (nrow(domain_data) == 0) {
+    stop("No taxa found for domain: ", domain)
+  }
+
+  # Average replicates within each timepoint first.
+  sample_means <- domain_data %>%
+    group_by(Experiment, ManureID, Comment, TaxonKey) %>%
+    summarise(
+      Abundance = mean(Abundance),
+      .groups = "drop"
+    )
+
+  # Select top taxa separately for each manure,
+  # based on mean abundance across Start and End.
+  top <- sample_means %>%
+    group_by(Experiment, ManureID, TaxonKey, Comment) %>%
+    summarise(
+      Mean_abundance = mean(Abundance),
+      .groups = "drop"
+    ) %>%
+    filter(Mean_abundance > 0) %>%
+    arrange(Experiment, ManureID, Comment, desc(Mean_abundance), TaxonKey) %>%
+    group_by(Experiment, ManureID, Comment) %>%
+    slice_head(n = n_top) %>%
+    ungroup()
+
+  selected <- unique(top$TaxonKey)
+
+  # Sort displayed taxa by overall mean abundance.
+  # The most abundant taxon appears at the top.
+  taxa_order <- sample_means %>%
+    filter(TaxonKey %in% selected) %>%
+    group_by(TaxonKey) %>%
+    summarise(
+      Overall_abundance = mean(Abundance),
+      .groups = "drop"
+    ) %>%
+    arrange(desc(Overall_abundance), TaxonKey) %>%
+    pull(TaxonKey)
+
+  tax_labels <- taxonomy %>%
+    filter(TaxonKey %in% selected) %>%
+    mutate(
+      TaxonLabel = map2_chr(
+        Taxon, Parent,
+        ~ taxon_label(.x, .y, rank = "Genus")
+      )
+    )
+
+  # Black outlines indicate the top taxa within each manure.
+  display <- sample_means %>%
+    filter(TaxonKey %in% selected) %>%
+    left_join(
+      top %>%
+        select(Experiment, ManureID, TaxonKey, Comment) %>%
+        mutate(Top = TRUE),
+      by = c("Experiment", "ManureID", "TaxonKey", "Comment")
+    ) %>%
+    mutate(Top = replace_na(Top, FALSE))
+
+  # Remaining abundance excludes ALL taxa displayed in the heatmap.
+  # remaining <- sample_means %>%
+  #   group_by(Experiment, ManureID, Comment) %>%
+  #   summarise(
+  #     Abundance = sum(Abundance[!TaxonKey %in% selected]),
+  #     .groups = "drop"
+  #   ) %>%
+  #   mutate(
+  #     TaxonKey = "__remaining__",
+  #     Top = FALSE
+  #   )
+  
+  remaining <- sample_means %>%
+  group_by(Experiment, ManureID, Comment) %>%
+  summarise(
+    N_remaining = sum(
+      !TaxonKey %in% selected & Abundance > 0,
+      na.rm = TRUE
+    ),
+    Abundance = sum(
+      Abundance[!TaxonKey %in% selected],
+      na.rm = TRUE
+    ),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    TaxonKey = "__remaining__",
+    Top = FALSE
+  )
+
+  
+  display <- bind_rows(display, remaining) %>%
+    mutate(
+      TaxonKey = factor(
+        TaxonKey,
+        levels = c("__remaining__", rev(taxa_order))
+      ),
+      Bin = case_when(
+        Abundance == 0   ~ "0",
+        Abundance < 0.01 ~ "<0.01",
+        Abundance < 0.1  ~ "0.01–<0.1",
+        Abundance < 1    ~ "0.1–<1",
+        Abundance < 2    ~ "1–<2",
+        Abundance < 5    ~ "2–<5",
+        TRUE             ~ "≥5"
+      ),
+      Bin = factor(Bin, levels = bin_levels),
+      #Value_label = if_else(
+      #  Abundance >= cell_label_min,
+      #  sprintf("%.1f", Abundance),
+      #  ""
+      #),
+      Value_label = case_when(
+        TaxonKey == "__remaining__" ~ sprintf(
+          "%.0f (%d)", Abundance, N_remaining
+        ),
+        Abundance >= cell_label_min ~ sprintf("%.1f", Abundance),
+        TRUE ~ ""
+      ),
+      Text_colour = if_else(Abundance >= 5, "white", "black")
+    )
+
+  labels <- c(
+    setNames(tax_labels$TaxonLabel, tax_labels$TaxonKey),
+    "__remaining__" = paste("Remaining", tolower(domain))
+  )
+
+  p <- ggplot(display, aes(Comment, TaxonKey)) +
+    geom_tile(
+      aes(fill = Bin),
+      colour = "grey90",
+      linewidth = 0.2
+    ) +
+    geom_tile(
+      data = filter(display, Top),
+      fill = NA,
+      colour = "black",
+      linewidth = 0.45
+    ) +
+    geom_text(
+      aes(label = Value_label, colour = Text_colour),
+      size = 2.7
+    ) +
+    ggh4x::facet_nested(
+      cols = vars(Experiment, ManureID),
+      scales = "free_x",
+      space = "free_x"
+    ) +
+    scale_colour_identity() +
+    scale_fill_manual(
+      values = bin_colours,
+      drop = FALSE,
+      name = "Relative abundance (%)"
+    ) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(
+      labels = labels,
+      expand = c(0, 0)
+    ) +
+    labs(
+      title = paste0(domain, " — Genus"),
+      x = NULL,
+      y = NULL
+    ) +
+    theme_bw(base_size = 12) +
+    theme(
+      panel.grid = element_blank(),
+      panel.spacing.x = grid::unit(0.15, "lines"),
+      axis.ticks = element_blank(),
+      axis.text.y = ggtext::element_markdown(
+        size = 9,
+        colour = "black"
+      ),
+      axis.text.x = element_text(
+        #angle = 45,
+        #hjust = 1,
+        size = 9,
+        colour = "black"
+      ),
+      strip.background = element_rect(
+        fill = "grey95",
+        colour = "grey60",
+        linewidth = 0.3
+      ),
+      strip.text.x = element_text(size = 9),
+      plot.title = element_text(face = "bold", size = 13),
+      legend.position = "bottom",
+      plot.margin = margin(8, 10, 8, 8)
+    ) +
+    guides(fill = guide_legend(nrow = 1))
+
+  
+  # Functional annotations for exactly the displayed taxa --------------------
+row_levels <- levels(display$TaxonKey)
+
+annotation_taxa <- taxonomy %>%
+  filter(TaxonKey %in% selected) %>%
+  transmute(
+    TaxonKey,
+    Domain,
+    GenusKey = clean_genus(Taxon)
+  )
+
+# function_display <- crossing(
+#   TaxonKey = c(selected, "__remaining__"),
+#   Function = names(function_names)
+# ) %>%
+#   left_join(annotation_taxa, by = "TaxonKey") %>%
+#   left_join(
+#     function_data,
+#     by = c("Domain", "GenusKey", "Function")
+#   ) %>%
+#   mutate(
+#     Status = case_when(
+#       TaxonKey == "__remaining__" ~ "not_applicable",
+#       is.na(Status)              ~ "unknown",
+#       TRUE                       ~ Status
+#     ),
+#     Symbol = case_when(
+#       Status == "pos" ~ "+",
+#       Status == "neg" ~ "-",
+#       Status == "var" ~ "~",
+#       TRUE           ~ ""
+#     ),
+#     TaxonKey = factor(TaxonKey, levels = row_levels),
+#     Function = factor(Function, levels = names(function_names))
+#   )
+
+# Function names appear directly on the upper x-axis.
+# No functional-annotation facet strips.
+# function_plot <- ggplot(
+#   function_display,
+#   aes(Function, TaxonKey)
+# ) +
+#   geom_tile(
+#     aes(fill = Status),
+#     colour = "grey85",
+#     linewidth = 0.2
+#   ) +
+#   geom_text(aes(label = Symbol), size = 3) +
+#   scale_fill_manual(
+#     values = c(
+#       pos = "#73B7A6",
+#       neg = "#EC9E75",
+#       var = "#F2D58A",
+#       unknown = "#FFFFFF",
+#       not_applicable = "#F2F2F2"
+#     ),
+#     breaks = c("pos", "neg", "var", "unknown"),
+#     labels = c(
+#       "Positive (+)",
+#       "Negative (\u2212)",
+#       "Variable (~)",
+#       "Unknown / unannotated"
+#     ),
+#     name = "MiDAS annotation",
+#     drop = FALSE
+#   ) +
+#   scale_x_discrete(
+#     labels = function_names,
+#     position = "top",
+#     expand = c(0, 0),
+#     drop = FALSE
+#   ) +
+#   scale_y_discrete(
+#     limits = row_levels,
+#     drop = FALSE,
+#     expand = c(0, 0)
+#   ) +
+#   labs(x = NULL, y = NULL) +
+#   theme_bw(base_size = 12) +
+#   theme(
+#     panel.grid = element_blank(),
+#     axis.ticks = element_blank(),
+#     axis.text.y = element_blank(),
+#     axis.text.x.top = element_text(
+#       angle = 90,
+#       hjust = 0,
+#       vjust = 0.5,
+#       size = 9,
+#       colour = "black"
+#     ),
+#     legend.position = "bottom",
+#     plot.margin = margin(8, 8, 8, 0)
+#   )
+# 
+# n_abundance_columns <- sample_means %>%
+#   distinct(Experiment, ManureID, Comment) %>%
+#   nrow()
+# 
+# combined_plot <- patchwork::wrap_plots(
+#   p,
+#   function_plot,
+#   nrow = 1,
+#   widths = c(n_abundance_columns, length(function_names)),
+#   guides = "collect"
+# ) &
+#   theme(legend.position = "bottom")
+#   
+  
+  list(
+  #plot = combined_plot,
+  abundance_plot = p,
+  #function_plot = function_plot,
+  data = display,
+  #function_data = function_display,
+  top_taxa = top %>%
+    left_join(taxonomy, by = "TaxonKey"),
+  n_rows = length(selected) + 1
+)
+}
+  
+  
+  list(
+    bacteria = make_heatmap("Bacteria", top_bacteria),
+    archaea = make_heatmap("Archaea", top_archaea)
+  )
+}
+
+heatmaps <- build_manure_heatmaps(
+  long_data = d_long,
+  top_bacteria = 10,
+  top_archaea = 2
+)
+
+#n_abundance_columns <- d_long %>%
+#  ungroup() %>%
+#  distinct(Experiment, ManureID, Comment) %>%
+#  nrow()
+#
+#combined_heatmap <- patchwork::wrap_plots(
+#  heatmaps$bacteria$abundance_plot,
+#  heatmaps$bacteria$function_plot,
+#  heatmaps$archaea$abundance_plot,
+#  heatmaps$archaea$function_plot,
+#  ncol = 2,
+#  byrow = TRUE,
+#  widths = c(n_abundance_columns, length(function_labels)),
+#  heights = c(
+#    heatmaps$bacteria$n_rows,
+#    heatmaps$archaea$n_rows
+#  ),
+#  guides = "collect"
+#) &
+#  theme(legend.position = "bottom")
+#
+#combined_heatmap
+#
+#heatmaps$bacteria$function_plot +
+#  theme(axis.text.y = element_text())
+
+```
+
+```{r}
+
+plot_manure_functions <- function(heatmaps, assignments,
+                                 bacteria_columns = c('Polysaccharide hydrolysis', 'Sugar fermentation',
+                                   'Peptide/AA catabolism', 'VFA production',
+                                   'H2/formate production', 'Lactate production'),
+                                 archaea_columns = c('CO2-reducing methanogenesis',
+                                   'Acetoclastic methanogenesis',
+                                   'Methyl dismutation methanogenesis',
+                                   'H2-dependent methyl methanogenesis'),
+                                 point_size = 2.8, function_width = 0.8) {
+  
+  
+ 
+  
+  key <- function(x) stringr::str_to_lower(stringr::str_squish(
+    stringr::str_replace_all(stringr::str_remove(x, '^[a-z]__'), '_', ' ')))
+  required <- c('Taxon','Function','Status','Evidence')
+  stopifnot(all(required %in% names(assignments)))
+  assignments <- assignments |> dplyr::mutate(JoinKey = key(Taxon))
+  if (anyDuplicated(assignments[c('JoinKey','Function')]))
+    stop('Resolve duplicate taxon/function assignments first.')
+  
+   allowed_status <- c("pos", "neg", "variable", "unknown")
+
+  if (!all(assignments$Status %in% allowed_status)) {
+    stop("Status must be pos, neg, variable or unknown.")
+  }
+  
+  # if (!all(assignments$Status %in% c('pos','neg','unknown')))
+  #   stop('Status must be pos, neg or unknown.')
+  make_panel <- function(result, columns) {
+    levels_y <- levels(result$data$TaxonKey)
+    if (is.null(levels_y)) stop('Expected factor TaxonKey in result$data.')
+    taxa <- result$top_taxa |> dplyr::distinct(TaxonKey, Taxon) |>
+      dplyr::mutate(TaxonKey = as.character(TaxonKey), JoinKey = key(Taxon),
+        Excluded = stringr::str_detect(Taxon,
+          stringr::regex('midas|unclas', ignore_case = TRUE)))
+    if (anyDuplicated(taxa$TaxonKey)) stop('TaxonKey has conflicting names.')
+    points <- tidyr::crossing(
+        TaxonKey = levels_y,
+        Function = columns
+      ) |>
+        dplyr::left_join(taxa, by = "TaxonKey") |>
+        dplyr::left_join(
+          assignments |> dplyr::select(-Taxon),
+          by = c("JoinKey", "Function")
+        ) |>
+        dplyr::mutate(
+          Remaining = TaxonKey == "__remaining__",
+      
+          # Unclassified/MiDAS taxa receive explicit unknown open points.
+          Excluded = dplyr::coalesce(Excluded, FALSE),
+      
+          Status = dplyr::case_when(
+            Excluded ~ "unknown",
+            TRUE ~ dplyr::coalesce(Status, "unknown")
+          ),
+      
+          Evidence = dplyr::case_when(
+            Excluded | Status == "unknown" ~ "None",
+            TRUE ~ dplyr::coalesce(Evidence, "None")
+          ),
+      
+          TaxonKey = factor(TaxonKey, levels = levels_y),
+          Function = factor(Function, levels = columns)
+        )
+    p <- ggplot2::ggplot(points, ggplot2::aes(Function, TaxonKey)) +
+        ggplot2::geom_point(
+          data = dplyr::filter(points, !Remaining),
+          ggplot2::aes(
+            colour = Status,
+            shape = Evidence
+          ),
+          size = point_size,
+          stroke = 0.7
+        )   +
+      #ggplot2::aes(colour = Status, shape = Evidence), size = point_size) +
+      ggplot2::scale_colour_manual(
+          name = "Reported capability",
+          values = c(
+            pos      = "#238B65",
+            neg      = "#CB4545",
+            variable = "#E6B800",
+            unknown  = "#BDBDBD"
+          ),
+          limits = allowed_status,
+          labels = c(
+            "Positive",
+            "Negative in tested representatives",
+            "Variable among species/strains",
+            "Unknown"
+          ),
+          drop = FALSE
+        ) +
+      ggplot2::scale_shape_manual(values = c(Experimental = 16, Genomic = 17,
+        Both = 15, None = 1), limits = c('Experimental','Genomic','Both','None'),
+        labels = c('Experimental','Genomic prediction','Experimental + genomic','No evidence'),
+        drop = FALSE, name = 'Evidence') +
+      ggplot2::scale_x_discrete(position = 'top', drop = FALSE,
+        labels = function(x) dplyr::recode(x,
+          'Peptide/AA catabolism' = 'Peptides / AA',
+          'H2/formate production' = 'H2 / formate production',
+          'Methyl dismutation methanogenesis' = 'Methyl dismutation',
+          'H2-dependent methyl methanogenesis' = 'H2-dependent methyl reduction')) +
+        ggplot2::scale_y_discrete(
+          limits = levels_y,
+          drop = FALSE,
+          expand = ggplot2::expansion(add = 0.5)
+        )  +
+      ggplot2::labs(x = NULL, y = NULL) + ggplot2::theme_bw(base_size = 11) +
+      ggplot2::theme(
+        panel.grid.major = ggplot2::element_line(colour = 'grey93', linewidth = 0.2),
+        panel.grid.minor = ggplot2::element_blank(), axis.ticks = ggplot2::element_blank(),
+        axis.text.y = ggplot2::element_blank(),
+        axis.text.x = ggplot2::element_blank(),
+        strip.background = element_rect(color = "transparent", fill = "transparent"),
+        strip.text.x = element_text(angle = 45, hjust = 0, vjust = 0, margin = ggplot2::margin(t = 8, r = 8, b = 8, l = 8)),
+        strip.clip = "off",
+        axis.text.x.top = element_blank(), #ggplot2::element_text(angle = 90, hjust = 0, vjust = 0.5),
+        legend.position = 'bottom') +
+      ggplot2::facet_grid(
+  cols = ggplot2::vars(Function),
+  scales = "free_x",
+  space = "free_x",
+  drop = TRUE
+) +  ggplot2::scale_x_discrete(
+  drop = TRUE,
+  expand = ggplot2::expansion(add = 0.1)
+)
+    list(plot = p, data = points)
+  }
+ 
+  
+   # Keep one abundance legend and one set of functional legends.
+  # Build the functional point panels.
+  b <- make_panel(heatmaps$bacteria, bacteria_columns)
+  a <- make_panel(heatmaps$archaea, archaea_columns)
+
+  # Retain one abundance legend.
+  b_abundance <- heatmaps$bacteria$abundance_plot +
+    ggplot2::theme(legend.position = "bottom")
+
+  a_abundance <- heatmaps$archaea$abundance_plot +
+    ggplot2::guides(fill = "none", colour = "none")
+
+  # Retain one set of functional legends.
+  b_functions <- b$plot +
+    ggplot2::guides(
+      colour = ggplot2::guide_legend(
+        order = 2,
+        override.aes = list(shape = 16, size = 3)
+      ),
+      shape = ggplot2::guide_legend(
+        order = 3,
+        override.aes = list(colour = "grey30", size = 3)
+      )
+    )
+
+  a_functions <- a$plot +
+    ggplot2::guides(colour = "none", shape = "none")
+
+  combined_plot <- patchwork::wrap_plots(
+    b_abundance,
+    b_functions,
+    a_abundance,
+    a_functions,
+    ncol = 2,
+    heights = c(
+      heatmaps$bacteria$n_rows,
+      heatmaps$archaea$n_rows
+    ),
+    widths = c(
+      22,
+      function_width *
+        max(length(bacteria_columns), length(archaea_columns))
+    ),
+    guides = "collect"
+  ) &
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.box = "vertical"
+    )
+  
+  combined_plot_HM_only <- patchwork::wrap_plots(
+    b_abundance,
+    a_abundance,
+    ncol = 1,
+    heights = c(
+      heatmaps$bacteria$n_rows,
+      heatmaps$archaea$n_rows
+    ),
+    widths = c(
+      16,
+      function_width *
+        max(length(bacteria_columns), length(archaea_columns))
+    ),
+    guides = "collect"
+  ) &
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.box = "vertical"
+    )
+
+  
+  list(
+    plot = combined_plot,
+    plot2 = combined_plot_HM_only,
+    bacteria = b,
+    archaea = a
+  )
+}
+
+
+#Usage:
+assignments <- readr::read_csv(paste0(WD, '/data/Manure_function_assignments.csv'),
+ col_types = readr::cols(.default = readr::col_character()), na = '')
+result <- plot_manure_functions(heatmaps, assignments)
+result$plot
+ggplot2::ggsave(paste0(WD, '/output/HM_with_functions.svg'), result$plot, width = 19, height = 13)
+
+result$plot2
+ggplot2::ggsave(paste0(WD, '/output/HM_only.svg'), result$plot2, width = 15.5, height = 11)
+
+
+
+
+
+```
+
+
+## Figure XX: Ordination 
+
+```{r pca-function, include=FALSE}
+
+library(ggplot2)
+library(ggrepel)
+
+amp_pca_taxa <- function(
+    data,
+    tax_aggregate = "Genus",
+    sample_color_by,
+    sample_label_by = NULL,
+    trajectory_order = c("Start", "End"),
+    trajectory_group = c("Start", "End"),
+    filter_taxa = 0.1,
+    n_loadings = 25,
+    sample_point_size = 2.5,
+    loading_point_size = 1,
+    loading_label_size = 3,
+    loading_scale = 0.8,
+    detailed_output = FALSE
+) {
+
+  taxonomic_ranks <- c(
+    "Kingdom", "Phylum", "Class", "Order",
+    "Family", "Genus", "Species"
+  )
+
+  if (!tax_aggregate %in% taxonomic_ranks) {
+    stop(
+      "tax_aggregate must be one of: ",
+      paste(taxonomic_ranks, collapse = ", ")
+    )
+  }
+
+  abund <- as.matrix(data$abund)
+  storage.mode(abund) <- "double"
+
+  tax <- as.data.frame(data$tax)
+  metadata <- as.data.frame(data$metadata)
+
+  otu_ids <- rownames(abund)
+  sample_ids <- colnames(abund)
+
+  # Match taxonomy with abundance table
+  if (all(otu_ids %in% rownames(tax))) {
+
+    tax <- tax[otu_ids, , drop = FALSE]
+
+  } else if ("OTU" %in% colnames(tax)) {
+
+    if (!all(otu_ids %in% tax$OTU)) {
+      stop("Some ASVs are missing from the taxonomy table.")
+    }
+    tax <- tax[match(otu_ids, tax$OTU), , drop = FALSE]
+
+  } else {
+
+    stop("Could not match taxonomy to the abundance table.")
+  }
+
+  # Extract selected taxonomic level
+  taxon <- as.character(tax[[tax_aggregate]])
+
+  missing_taxon <- is.na(taxon) | trimws(taxon) == ""
+
+  target_position <- match(
+    tax_aggregate,
+    taxonomic_ranks
+  )
+
+  # Find the lowest available rank above the selected level
+  if (target_position > 1) {
+
+    higher_ranks <- tax[
+      ,
+      taxonomic_ranks[seq_len(target_position - 1)],
+      drop = FALSE
+    ]
+
+    higher_ranks[] <- lapply(
+      higher_ranks,
+      function(x) {
+        x <- as.character(x)
+        x[is.na(x) | trimws(x) == ""] <- NA_character_
+        x
+      }
+    )
+
+    latest_classification <- apply(
+      higher_ranks,
+      1,
+      function(x) {
+        classified <- x[!is.na(x)]
+
+        if (length(classified) == 0) {
+          "unknown"
+        } else {
+          tail(classified, 1)
+        }
+      }
+    )
+
+  } else {
+
+    latest_classification <- rep(
+      "unknown",
+      nrow(tax)
+    )
+  }
+
+  # Remove prefixes such as f_ or f__
+  latest_classification <- sub(
+    "^[a-z]__?",
+    "",
+    latest_classification
+  )
+
+  # Unique name for each unclassified taxon
+  taxon[missing_taxon] <- paste0(
+    "unclassified_",
+    tolower(tax_aggregate),
+    "_",
+    latest_classification[missing_taxon],
+    "_",
+    otu_ids[missing_taxon]
+  )
+
+  # Aggregate abundance table
+  taxon_abund <- rowsum(
+    abund,
+    group = taxon,
+    reorder = FALSE,
+    na.rm = TRUE
+  )
+
+  if (any(colSums(taxon_abund) <= 0)) {
+    stop("One or more input samples have no reads.")
+  }
+
+  # Calculate relative abundance
+  taxon_relative <- sweep(
+    taxon_abund,
+    2,
+    colSums(taxon_abund),
+    "/"
+  ) * 100
+
+  maximum_abundance <- apply(
+    taxon_relative,
+    1,
+    max,
+    na.rm = TRUE
+  )
+
+  keep_taxa <- maximum_abundance > filter_taxa
+
+  message(
+    sum(!keep_taxa), " ", tolower(tax_aggregate),
+    " taxa filtered; ",
+    sum(keep_taxa), " retained."
+  )
+
+  taxon_abund <- taxon_abund[
+    keep_taxa,
+    ,
+    drop = FALSE
+  ]
+
+  if (nrow(taxon_abund) < 2) {
+    stop("Fewer than two taxa remain after filtering.")
+  }
+
+  # Samples × taxa
+  community <- t(taxon_abund)
+
+  empty_samples <- rowSums(community) == 0
+
+  if (any(empty_samples)) {
+    stop(
+      "Samples empty after filtering: ",
+      paste(rownames(community)[empty_samples], collapse = ", "),
+      ". Reduce filter_taxa."
+    )
+  }
+
+  # Hellinger transformation
+  community_hellinger <- sqrt(
+    sweep(
+      community,
+      1,
+      rowSums(community),
+      "/"
+    )
+  )
+
+  # Remove taxa without variation
+  taxon_variance <- apply(
+    community_hellinger,
+    2,
+    var
+  )
+
+  keep_variable <- is.finite(taxon_variance) &
+    taxon_variance > 0
+
+  community_hellinger <- community_hellinger[
+    ,
+    keep_variable,
+    drop = FALSE
+  ]
+
+  if (ncol(community_hellinger) < 2) {
+    stop("Fewer than two variable taxa remain.")
+  }
+
+  if (nrow(community_hellinger) < 3) {
+    stop("At least three samples are needed for the two-axis PCA plot.")
+  }
+
+  # PCA
+  pca <- prcomp(
+    community_hellinger,
+    center = TRUE,
+    scale. = FALSE
+  )
+
+  explained_variance <- 100 * pca$sdev^2 /
+    sum(pca$sdev^2)
+
+  sample_scores <- data.frame(
+    SampleID = rownames(pca$x),
+    PC1 = pca$x[, 1],
+    PC2 = pca$x[, 2],
+    check.names = FALSE
+  )
+
+  loading_scores <- data.frame(
+    Taxon = rownames(pca$rotation),
+    PC1 = pca$rotation[, 1],
+    PC2 = pca$rotation[, 2],
+    check.names = FALSE
+  )
+ 
+#   loading_scores$importance <-
+#     loading_scores$PC1^2 +
+#     loading_scores$PC2^2
+
+  rotation_2d <- pca$rotation[, 1:2, drop = FALSE]
+
+  loading_scores$importance <- rowSums(
+    sweep(
+      rotation_2d^2,
+      2,
+      pca$sdev[1:2]^2,
+      "*"
+    )
+  )
+  
+  loading_scores$Label <- sub(
+    "^[a-z]__?",
+    "",
+    loading_scores$Taxon
+  )
+
+  # Scale loadings into sample-score space
+  x_scale <- max(abs(sample_scores$PC1)) /
+    max(abs(loading_scores$PC1))
+
+  y_scale <- max(abs(sample_scores$PC2)) /
+    max(abs(loading_scores$PC2))
+
+  scale_factor <- min(x_scale, y_scale) *
+    loading_scale
+
+  loading_scores$PC1 <-
+    loading_scores$PC1 * scale_factor
+
+  loading_scores$PC2 <-
+    loading_scores$PC2 * scale_factor
+
+  loading_scores <- loading_scores[
+    order(
+      loading_scores$importance,
+      decreasing = TRUE
+    ),
+  ]
+
+  labelled_loadings <- head(
+    loading_scores,
+    n_loadings
+  )
+
+  # Match metadata
+  if (all(sample_ids %in% rownames(metadata))) {
+
+    metadata <- metadata[sample_ids, , drop = FALSE]
+
+  } else {
+
+    possible_id_columns <- colnames(metadata)[
+      vapply(
+        metadata,
+        function(x) {
+          all(sample_ids %in% as.character(x))
+        },
+        logical(1)
+      )
+    ]
+
+    if (length(possible_id_columns) == 0) {
+      stop("Could not match metadata to samples.")
+    }
+
+    metadata <- metadata[
+      match(
+        sample_ids,
+        as.character(metadata[[possible_id_columns[1]]])
+      ),
+      ,
+      drop = FALSE
+    ]
+  }
+
+  metadata_scores <- metadata[
+    match(sample_scores$SampleID, sample_ids),
+    ,
+    drop = FALSE
+  ]
+  
+  
+
+  # Remove duplicate columns, including SampleID
+  metadata_scores <- metadata_scores[
+    ,
+    !colnames(metadata_scores) %in%
+      colnames(sample_scores),
+    drop = FALSE
+  ]
+
+  sample_scores <- cbind(
+    sample_scores,
+    metadata_scores
+  )
+
+  # Base plot
+  p <- ggplot(
+    sample_scores,
+    aes(
+      x = PC1,
+      y = PC2,
+      colour = .data[[sample_color_by]]
+    )
+  )
+
+  # Trajectories
+  if (!is.null(trajectory_order)) {
+
+    if (is.null(trajectory_group)) {
+      trajectory_group <- sample_color_by
+    }
+
+    trajectory_data <- sample_scores[
+      order(
+        sample_scores[[trajectory_group]],
+        sample_scores[[trajectory_order]], decreasing = T
+      ),
+    ]
+
+    p <- p +
+      geom_path(
+        data = trajectory_data,
+        aes(group = .data[[trajectory_group]]),
+        linewidth = 0.7,
+        alpha = 1, 
+        arrow = grid::arrow(length = grid::unit(3, "mm"), type = "closed")
+      )
+  }
+
+  p <- p +
+    geom_point(size = sample_point_size) +
+
+    geom_point(
+      data = loading_scores,
+      aes(x = PC1, y = PC2),
+      inherit.aes = FALSE,
+      colour = "grey40",
+      size = loading_point_size
+    ) +
+
+    ggrepel::geom_text_repel(
+      data = labelled_loadings,
+      aes(
+        x = PC1,
+        y = PC2,
+        label = Label
+      ),
+      inherit.aes = FALSE,
+      colour = "black",
+      size = loading_label_size,
+      fontface = "italic",
+      max.overlaps = Inf,
+      seed = 1
+    )
+
+  if (!is.null(sample_label_by)) {
+
+    p <- p +
+      ggrepel::geom_text_repel(
+        aes(label = .data[[sample_label_by]]),
+        colour = "black",
+        size = 3.5,
+        max.overlaps = Inf,
+        seed = 1,
+        show.legend = FALSE
+      )
+  }
+
+  p <- p +
+    labs(
+      x = paste0(
+        "PC1 [",
+        round(explained_variance[1], 1),
+        "%]"
+      ),
+      y = paste0(
+        "PC2 [",
+        round(explained_variance[2], 1),
+        "%]"
+      ),
+      colour = sample_color_by
+    ) +
+    theme_minimal() +
+    labs(colour = "Manure ID") +
+    theme(
+      panel.grid.minor = element_blank(),
+      axis.line = element_line(colour = "black"),
+      legend.position = "right"
+    )
+
+  if (detailed_output) {
+    return(
+      list(
+        plot = p,
+        pca = pca,
+        sample_scores = sample_scores,
+        taxon_loadings = loading_scores,
+        taxon_abundance = taxon_abund,
+        hellinger = community_hellinger
+      )
+    )
+  }
+
+  p
+}
+
+```
+
+```{r pca-panel-helper, include=FALSE}
+pca_panels <- function(data, rank = "Genus") {
+  draw_panel <- function(input, title) {
+    amp_pca_taxa(
+      data = input,
+      tax_aggregate = rank,
+      sample_color_by = "ManureID",
+      sample_label_by = "Comment",
+      trajectory_order = "Comment",
+      trajectory_group = "ManureID",
+      filter_taxa = 0.1,
+      n_loadings = 15
+    ) + labs(title = title, colour = "ManureID")
+  }
+
+  #p_all <- draw_panel(data, "All samples")
+  p_bovaer <- draw_panel(
+    amp_subset_samples(data, Experiment == "Experiment 1"), "Experiment 1"
+  )
+  p_silvaer <- draw_panel(
+    amp_subset_samples(data, Experiment == "Experiment 2"), "Experiment 2"
+  )
+
+  ((p_bovaer | p_silvaer)) 
+  # +
+  #   plot_annotation(title = paste(rank, "composition — Hellinger PCA"))
+}
+
+
+pca_panels_2 <- function(data, rank = "Genus") {
+  draw_panel <- function(input, title) {
+    amp_pca_taxa(
+      data = input,
+      tax_aggregate = rank,
+      sample_color_by = "SampleSite_Tank",
+      sample_label_by = "Data_chr",
+      trajectory_order = "Comment",
+      trajectory_group = "SampleSite_Tank",
+      filter_taxa = 0.1,
+      n_loadings = 25
+    ) + labs(title = title, colour = "Plant / tank")
+  }
+
+  p_all <- draw_panel(data, "All samples")
+  p_bovaer <- draw_panel(
+    amp_subset_samples(data, type == "Bovaer"), "Bovaer"
+  )
+  p_silvaer <- draw_panel(
+    amp_subset_samples(data, type == "Silvaer"), "Silvaer"
+  )
+
+  (p_all / (p_bovaer | p_silvaer)) +
+    plot_annotation(title = paste(rank, "composition — Hellinger PCA"))
+}
+
+
+```
+
+### Genus level PCA with loadings
+
+```{r pca-genus, fig.width=17, fig.height=12}
+
+pca_genus_level <- pca_panels(d_ASV_V4, rank = "Genus") 
+    
+ggplot2::ggsave(paste0(WD, '/output/pca_genus_level.svg'), pca_genus_level, width = 14, height = 7)
+
+pca_genus_level 
+```
+
+---------------------
+
+# MAKE BIOPROJECT 
+
+```{r}
+
+# MAKE BIOPROJECT 
+
+## Sample metadata
+included_samples <- d_long %>% 
+  #mutate(SampleSite = if_else(SampleSite == "Aalborg Vest HCO", "Aalborg Vest", SampleSite)) %>% 
+  #left_join(plant_metadata) %>% 
+  select(-samples) %>% 
+  mutate(
+    Longitude = case_when(
+      SampleSite == "Løkken"  ~ 9.7147,
+      SampleSite == "Fyn"     ~ 10.3500, # Representative island location
+      SampleSite == "Viborg"  ~ 9.4020,
+      SampleSite == "Hvilsom" ~ 9.6133,
+      SampleSite == "Thisted" ~ 8.6849,
+      SampleSite == "Skjern"  ~ 8.5003,
+      SampleSite == "Højslev" ~ 9.1362,
+      TRUE ~ NA_real_
+    ),
+    Latitude = case_when(
+      SampleSite == "Løkken"  ~ 57.3705,
+      SampleSite == "Fyn"     ~ 55.3500, # Representative island location
+      SampleSite == "Viborg"  ~ 56.4532,
+      SampleSite == "Hvilsom" ~ 56.6583,
+      SampleSite == "Thisted" ~ 56.9562,
+      SampleSite == "Skjern"  ~ 55.9441,
+      SampleSite == "Højslev" ~ 56.5855,
+      TRUE ~ NA_real_
+    ),
+    FlowcellID = "FBF14583"
+  )
+
+
+format_gps <- function(latitude, longitude) {
+  # Determine N/S and E/W
+  lat_direction <- ifelse(latitude >= 0, "N", "S")
+  lon_direction <- ifelse(longitude >= 0, "E", "W")
+  
+  # Absolute values to remove negative sign
+  abs_latitude <- abs(latitude)
+  abs_longitude <- abs(longitude)
+  
+  # Format with 4 decimal places
+  formatted_latitude <- sprintf("%.4f", abs_latitude)
+  formatted_longitude <- sprintf("%.4f", abs_longitude)
+  
+  # Create the formatted string
+  formatted_coords <- paste0(formatted_latitude, " ", lat_direction, " ", formatted_longitude, " ", lon_direction)
+  
+  return(formatted_coords)
+}
+
+
+metadata_ncbi <- included_samples %>%
+  transmute(
+    sample_name = paste(
+      FlowcellID, Barcode, ManureID, SampleContent, SampleSite, 
+      sep = "_"
+    ),
+    sample_title = paste0(
+      "Cow manure microbial community from ",
+      SampleSite,
+      " during a manure storage experiment"
+    ),
+    bioproject_accession = NA_character_, # Add PRJNA accession when available
+    organism = "manure metagenome",
+    collection_date = format(Date, "%Y-%m-%d"),
+    # Adjust these two descriptions to the actual sampling setting
+    env_broad_scale = "research facility [ENVO:00000469]",
+    env_local_scale = "research facility [ENVO:00000469]",
+    env_medium = "animal manure [ENVO:00003031]",
+    geo_loc_name = if_else(
+      is.na(SampleSite) | trimws(SampleSite) == "",
+      "Denmark",
+      paste0("Denmark: ", trimws(SampleSite), "; Tank: ", Tank)
+    ),
+    lat_lon = format_gps(longitude = Longitude, latitude =  Latitude),
+    storage_system = "pilot-scale manure storage tank",
+    isolation_source = "cow manure",
+    storage_timepoint = Comment,
+    # Optional custom attributes
+    host = "Bos taurus (TAXID: 9913)",
+    description = paste0(
+      "Cow manure sample collected during a manure storage experiment. ",
+      "Sample designation: ", SampleContent, "."
+    ), 
+    Barcode = Barcode, FlowcellID = FlowcellID
+  )
+
+
+metadata_ncbi_final <- 
+  metadata_ncbi %>% 
+  select(sample_name, sample_title, bioproject_accession, 
+         organism, collection_date, 
+         env_broad_scale, env_local_scale, env_medium, 
+         geo_loc_name, lat_lon,
+         storage_system, isolation_source, storage_timepoint, host,
+         description, Barcode#, library_ID
+) 
+library(openxlsx)
+# Create sample_names()# Create a new workbook
+my_wb <- createWorkbook()
+# Add a worksheet to the workbook
+addWorksheet(my_wb, "Sheet1")
+# Write the data to the worksheet
+writeData(my_wb, "Sheet1", metadata_ncbi)
+# Save the workbook to a file
+saveWorkbook(my_wb, paste0(WD, "/output/SRA_upload/20261026_metadata_ncbi.xlsx"))
+
+
+
+## SRA metadata 
+
+########################
+# SRA metadata ### 
+#################################
+
+SRA_metadata <- 
+  metadata_ncbi %>% 
+  mutate(
+    library_ID = paste0("LIB-", sample_name), 
+    sample_name = sample_name,
+    title = "Amplicon sequencing of manure samples", 
+    library_strategy = "AMPLICON",
+    library_source = "METAGENOMIC", 
+    library_selection = "PCR", 
+    library_layout = "single", 
+    platform = "OXFORD_NANOPORE", 
+    instrument_model = "MinION",
+    design_description = "V4 primers used had the following sequences: 515F (5’-GTGYCAGCMGCCGCGGTAA-3’) (Parada et al., 2016) and 806R  (5’-GGACTACNVGGGTWTCTAAT-3’) (Apprill et al., 2015).",
+    filename = sample_name, 
+    filetype = "fastq",
+  ) %>% 
+  select(sample_name, library_ID, title, library_strategy,library_source,	library_selection,
+         library_layout,	platform,	instrument_model,	design_description,	filetype, Barcode, FlowcellID)
+
+
+
+# Read excel with file names
+file_names <- vroom::vroom(paste0(WD, "/output/SRA_upload/file_names.tsv"), delim = ";", col_names = F)  %>% 
+  mutate(
+    file_name = X1,
+    Barcode = str_extract(X1, "barcode[0-9]+"),
+    FlowcellID =  "FBF14583" #if_else(str_detect(file_name, "FBF14583"), "FBF58010", "FBF18320"),
+    #sample_name = str_replace(sample_name, "__", "_"),
+    #sample_name = str_replace(sample_name, "2401p3_ID_945_", ""),
+    #sample_name = str_replace(sample_name, "2401p1_ID_945_", ""),
+  ) %>% 
+  select(-X1) %>% 
+  group_by(Barcode, FlowcellID) %>%
+  mutate(file_number = paste0("filename", row_number())) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = file_number, values_from = file_name, values_fill = "") %>% 
+  #select(-barcode) %>% 
+  rename("filename" = "filename1")
+
+
+
+SRA_metadata_all_files <- 
+  SRA_metadata %>% 
+  mutate(
+    sample_name = str_replace_all(sample_name, "ø", "oe"),
+    library_ID  = str_replace_all(library_ID , "ø", "oe")
+    ) %>% 
+  left_join(file_names) %>% 
+  select(-Barcode, -FlowcellID)
+
+# Create a new workbook
+my_wb <- createWorkbook()
+# Add a worksheet to the workbook
+addWorksheet(my_wb, "SRA_data")
+# Write the data to the worksheet
+writeData(my_wb, "SRA_data", SRA_metadata_all_files)
+# Save the workbook to a file
+saveWorkbook(my_wb, paste0(WD, "/output/SRA_upload/20261026_SRA_metadata.xlsx"))
+
+
+write.table(
+  SRA_metadata_all_files,
+  file = paste0(WD, "/output/SRA_upload/20250425_SRA_metadata.tsv"),
+  sep = "\t",
+  quote = FALSE,
+  row.names = FALSE
+)
+
+write_tsv(SRA_metadata_all_files, paste0(WD, "output/files/SRA_upload/20250425_SRA_metadata_2.tsv"))
+write_tsv(
+  SRA_metadata_all_files,
+  file = paste0(WD, "output/files/SRA_upload/20250425_SRA_metadata_2.tsv")
+  # sep = "\t",
+  # quote = FALSE,
+  # row.names = FALSE
+)
+
+
+
+
+
+```
+
+

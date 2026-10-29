@@ -1,0 +1,17 @@
+# This file is for various variables used throughout the workflow.
+# See a description of each setting in the README.md file.
+input_dir: "/home/bio.aau.dk/hd95lp/Projects/RETHINK/16S_v18_workflow/data/symlinks/2026-06-p2-Gylle_Søren_V4"
+output_dir: "output"
+tmp_dir: "tmp"
+log_dir: "logs"
+db_sintax: "/databases/midas/MiDAS5.3_20240320/FLASVs_w_sintax.fa"
+# to skip filtering altogether set to "--min_length 1"
+filtlong_args: "--min_length 1"
+max_threads: 32
+sample_sep: "_"
+# options passed on to cutadapt directly. Input, output, and threads are added automatically
+cutadapt_args: "-g GTGYCAGCMGCCGCGGTAA...ATTAGAWACCCBDGNTAGTCC --revcomp --discard-untrimmed -m 190 -M 316" 
+derep_minsize: 2
+unoise_minsize: 4
+rarefy_abund_table: False
+rarefy_sample_size: 2000

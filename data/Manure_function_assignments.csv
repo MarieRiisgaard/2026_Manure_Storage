@@ -1,0 +1,370 @@
+﻿Taxon,Domain,Function,Status,Evidence,Representative,Substrates_products,Reference_title,Reference_URL,Qualification
+Lachnospiraceae_NK3A20_group,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Lachnospiraceae_NK3A20_group,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Romboutsia,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Romboutsia,Bacteria,Sugar fermentation,pos,Both,R. ilealis CRIB,"Acetate, formate, lactate",Genomic and functional analysis of Romboutsia ilealis CRIBT reveals adaptation to the small intestine,https://doi.org/10.7717/peerj.3698,Reported in representative; activity and species identity in manure not established.
+Romboutsia,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Romboutsia,Bacteria,VFA production,pos,Both,R. ilealis CRIB,"Acetate, formate, lactate",Genomic and functional analysis of Romboutsia ilealis CRIBT reveals adaptation to the small intestine,https://doi.org/10.7717/peerj.3698,Reported in representative; activity and species identity in manure not established.
+Romboutsia,Bacteria,H2/formate production,pos,Both,R. ilealis CRIB,"Acetate, formate, lactate",Genomic and functional analysis of Romboutsia ilealis CRIBT reveals adaptation to the small intestine,https://doi.org/10.7717/peerj.3698,Reported in representative; activity and species identity in manure not established.
+Romboutsia,Bacteria,Lactate production,pos,Both,R. ilealis CRIB,"Acetate, formate, lactate",Genomic and functional analysis of Romboutsia ilealis CRIBT reveals adaptation to the small intestine,https://doi.org/10.7717/peerj.3698,Reported in representative; activity and species identity in manure not established.
+Romboutsia,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Romboutsia,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Romboutsia,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Romboutsia,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,Sugar fermentation,pos,Experimental,"P. sordellii 85A_1","Fermentation of glucose fructose and maltose","Metabolic diversity and responses of anteater clostridial isolates to chitin-based substrates","https://doi.org/10.3389/fvets.2025.1459378","Measured with ANAEROTEST 23 and API 20A; negative reactions for other sugars do not negate this broad functional category"
+Paeniclostridium,Bacteria,Peptide/AA catabolism,pos,Both,P. sordellii (published as C. sordellii),Amino-acid and peptide utilisation,Comparative genomic and phenomic analysis of Clostridium difficile and Clostridium sordellii,https://doi.org/10.1186/s12864-015-1663-5,Reported in representative; no sample-specific species or activity confirmation.
+Paeniclostridium,Bacteria,VFA production,pos,Experimental,"P. sordellii 85A_1","Acetate production in nutrient-rich medium","Metabolic diversity and responses of anteater clostridial isolates to chitin-based substrates","https://doi.org/10.3389/fvets.2025.1459378","Measured culture metabolite; does not demonstrate activity in stored manure"
+Paeniclostridium,Bacteria,H2/formate production,pos,Experimental,"P. sordellii 85A_1","Formate production","Metabolic diversity and responses of anteater clostridial isolates to chitin-based substrates","https://doi.org/10.3389/fvets.2025.1459378","Positive assignment is supported by formate production; hydrogen production is not established by this row"
+Paeniclostridium,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Paeniclostridium,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Christensenellaceae_R-7_group,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Christensenellaceae_R-7_group,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Turicibacter,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,Sugar fermentation,pos,Experimental,T. bilis,"Acetate, butyrate, lactate",Turicibacter bilis sp. nov.,https://doi.org/10.1099/ijsem.0.005153,Reported in representative; no sample-specific species or activity confirmation.
+Turicibacter,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,VFA production,pos,Experimental,T. bilis,"Acetate, butyrate, lactate",Turicibacter bilis sp. nov.,https://doi.org/10.1099/ijsem.0.005153,Reported in representative; no sample-specific species or activity confirmation.
+Turicibacter,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,Lactate production,pos,Experimental,T. bilis,"Acetate, butyrate, lactate",Turicibacter bilis sp. nov.,https://doi.org/10.1099/ijsem.0.005153,Reported in representative; no sample-specific species or activity confirmation.
+Turicibacter,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Turicibacter,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniphilum,Bacteria,Polysaccharide hydrolysis,pos,Both,P. saccharofermentans M3/6,"Acetate, propionate, isovalerate",Proteiniphilum saccharofermentans str. M3/6T isolated from a laboratory biogas reactor is versatile in polysaccharide and oligopeptide utilization as deduced from genome-based metabolic reconstructions,https://doi.org/10.1016/j.btre.2018.e00254,Reported in representative; activity and species identity in manure not established.
+Proteiniphilum,Bacteria,Sugar fermentation,variable,Both,"P. acetatigenes TB107T and TB6-6; P. saccharofermentans M3/6T","Carbohydrate utilization differs between published representatives","Proteiniphilum acetatigenes gen. nov. sp. nov. from a UASB reactor treating brewery wastewater; Description of Proteiniphilum saccharofermentans sp. nov. and related taxa; Genome-based metabolic reconstruction of P. saccharofermentans M3/6T","https://doi.org/10.1099/ijs.0.63807-0; https://doi.org/10.1099/ijsem.0.000902; https://pmc.ncbi.nlm.nih.gov/articles/PMC5993710/","Experimental carbohydrate-negative P. acetatigenes contrasts with saccharolytic P. saccharofermentans; genomic potential does not necessarily match measured phenotype"
+Proteiniphilum,Bacteria,Peptide/AA catabolism,pos,Both,P. saccharofermentans M3/6,"Acetate, propionate, isovalerate",Proteiniphilum saccharofermentans str. M3/6T isolated from a laboratory biogas reactor is versatile in polysaccharide and oligopeptide utilization as deduced from genome-based metabolic reconstructions,https://doi.org/10.1016/j.btre.2018.e00254,Reported in representative; activity and species identity in manure not established.
+Proteiniphilum,Bacteria,VFA production,pos,Both,P. saccharofermentans M3/6,"Acetate, propionate, isovalerate",Proteiniphilum saccharofermentans str. M3/6T isolated from a laboratory biogas reactor is versatile in polysaccharide and oligopeptide utilization as deduced from genome-based metabolic reconstructions,https://doi.org/10.1016/j.btre.2018.e00254,Reported in representative; activity and species identity in manure not established.
+Proteiniphilum,Bacteria,H2/formate production,pos,Genomic,P. saccharofermentans M3/6,H2 and formate predicted,Proteiniphilum saccharofermentans str. M3/6T isolated from a laboratory biogas reactor is versatile in polysaccharide and oligopeptide utilization as deduced from genome-based metabolic reconstructions,https://doi.org/10.1016/j.btre.2018.e00254,Reported in representative; activity and species identity in manure not established.
+Proteiniphilum,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniphilum,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniphilum,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniphilum,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniphilum,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,VFA production,pos,Experimental,"T. simiarum MSJ-40T","Acetate propionate butyrate and branched-chain VFAs reported","Alkaliphilus flagellatus sp. nov. and seven other novel species including Tissierella simiarum sp. nov. isolated from monkey faeces","https://pmc.ncbi.nlm.nih.gov/articles/PMC9558573/","Fermentation products measured in complex mGAM medium; individual products cannot be attributed to a particular substrate"
+Tissierella,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Tissierella,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,Sugar fermentation,neg,Experimental,"F. sanguinis reference strain","No carbohydrate fermentation detected in API 20A","Amygdalobacter indicium gen. nov. sp. nov. and Amygdalobacter nucleatus sp. nov. gen. nov.: novel bacteria from the family Oscillospiraceae isolated from the female genital tract","https://pmc.ncbi.nlm.nih.gov/articles/PMC11318147/","F. sanguinis was experimentally tested as a comparator; negative results support an asaccharolytic phenotype under the tested conditions"
+Fastidiosipila,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fastidiosipila,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,Sugar fermentation,neg,Experimental,"M. pumilum D2-18T and BA11a-f; M. vescum D5-2T","Asaccharolytic phenotype in characterized isolates","Description of Mogibacterium pumilum gen. nov. sp. nov. and Mogibacterium vescum gen. nov. sp. nov. and reclassification of Eubacterium timidum","https://doi.org/10.1099/00207713-50-2-679","Assignment applies to the characterized representatives; not proof of absence in every species"
+Mogibacterium,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Mogibacterium,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Trichococcus,Bacteria,Polysaccharide hydrolysis,pos,Both,"T. patagoniensis","Arabinan utilization; predicted extracellular endo-alpha-1-5-L-arabinanase","Genome-guided analysis allows the identification of novel physiological traits in Trichococcus species","https://doi.org/10.1186/s12864-019-6410-x","Genome-supported arabinan utilization confirmed by growth experiments; Results and Discussion identify T. patagoniensis whereas the abstract inconsistently names T. alkaliphilus; capability is species- and substrate-specific"
+Trichococcus,Bacteria,Sugar fermentation,pos,Both,Multiple Trichococcus species,"Lactate, acetate, formate, ethanol",Genome-guided analysis allows the identification of novel physiological traits in Trichococcus species,https://doi.org/10.1186/s12864-019-6410-x,Reported in representative; activity and species identity in manure not established.
+Trichococcus,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Trichococcus,Bacteria,VFA production,pos,Both,Multiple Trichococcus species,"Lactate, acetate, formate, ethanol",Genome-guided analysis allows the identification of novel physiological traits in Trichococcus species,https://doi.org/10.1186/s12864-019-6410-x,Reported in representative; activity and species identity in manure not established.
+Trichococcus,Bacteria,H2/formate production,pos,Both,Multiple Trichococcus species,"Lactate, acetate, formate, ethanol",Genome-guided analysis allows the identification of novel physiological traits in Trichococcus species,https://doi.org/10.1186/s12864-019-6410-x,Reported in representative; activity and species identity in manure not established.
+Trichococcus,Bacteria,Lactate production,pos,Both,Multiple Trichococcus species,"Lactate, acetate, formate, ethanol",Genome-guided analysis allows the identification of novel physiological traits in Trichococcus species,https://doi.org/10.1186/s12864-019-6410-x,Reported in representative; activity and species identity in manure not established.
+Trichococcus,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Trichococcus,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Trichococcus,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Trichococcus,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,Polysaccharide hydrolysis,pos,Experimental,"F. caenicola SIT8","Acidification of starch and glycogen in API 50 CH","Draft genome sequence of Fermentimonas caenicola strain SIT8 isolated from the human gut","https://doi.org/10.1186/s40793-018-0310-6","Indirect experimental evidence from polymer-substrate acidification; extracellular hydrolysis was not separately quantified; not evidence for cellulose degradation"Fermentimonas,Bacteria,Sugar fermentation,pos,Experimental,"F. caenicola ING2-E5BT","Anaerobic utilization of glucose and several other sugars","Description of Proteiniphilum saccharofermentans sp. nov. Petrimonas mucosa sp. nov. and Fermentimonas caenicola gen. nov. sp. nov.","https://doi.org/10.1099/ijsem.0.000902","Positive saccharolytic phenotype; substrate-specific negative reactions must not be interpreted as absence of all sugar fermentation"
+Fermentimonas,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,VFA production,pos,Experimental,F. caenicola ING2-E5B,Acetic and propionic acids,"Description of Proteiniphilum saccharofermentans sp. nov., Petrimonas mucosa sp. nov. and Fermentimonas caenicola gen. nov., sp. nov.",https://doi.org/10.1099/ijsem.0.000902,Reported in representative; activity and species identity in manure not established.
+Fermentimonas,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Fermentimonas,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+midas_g_49084,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_49084,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Proteiniclasticum,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,Sugar fermentation,neg,Experimental,"P. ruminis D3RC-2T and D3RC-3r","None of the tested saccharides utilized","Proteiniclasticum ruminis gen. nov. sp. nov. a strictly anaerobic proteolytic bacterium isolated from yak rumen","https://doi.org/10.1099/ijs.0.011759-0","Explicit negative substrate-use results for two P. ruminis isolates; other species remain insufficiently characterized for a universal claim"
+Proteiniclasticum,Bacteria,Peptide/AA catabolism,pos,Experimental,P. ruminis D3RC-2 and D3RC-3r,"Acetate, propionate, isobutyrate","Proteiniclasticum ruminis gen. nov., sp. nov., a strictly anaerobic proteolytic bacterium isolated from yak rumen",https://doi.org/10.1099/ijs.0.011759-0,Reported in representative; activity and species identity in manure not established.
+Proteiniclasticum,Bacteria,VFA production,pos,Experimental,P. ruminis D3RC-2 and D3RC-3r,"Acetate, propionate, isobutyrate","Proteiniclasticum ruminis gen. nov., sp. nov., a strictly anaerobic proteolytic bacterium isolated from yak rumen",https://doi.org/10.1099/ijs.0.011759-0,Reported in representative; activity and species identity in manure not established.
+Proteiniclasticum,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Proteiniclasticum,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Gallicola,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,Polysaccharide hydrolysis,pos,Experimental,"L. xylanilyticus XDB9T","Birchwood xylan hydrolysis","Lysinibacillus xylanilyticus sp. nov. a xylan-degrading bacterium isolated from forest humus","https://doi.org/10.1099/ijs.0.013367-0","Xylan degradation assessed using Congo-red and DNS reducing-sugar assays; starch hydrolysis was negative in this strain; aerobic experiments do not establish activity during anaerobic manure storage"
+Lysinibacillus,Bacteria,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Lysinibacillus,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,Sugar fermentation,pos,Experimental,C. glutamicum,"Lactate, succinate, acetate",Anaerobic Growth of Corynebacterium glutamicum via Mixed-Acid Fermentation,https://doi.org/10.1128/AEM.02413-15,Reported in representative; activity and species identity in manure not established.
+Corynebacterium,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,VFA production,pos,Experimental,C. glutamicum,"Lactate, succinate, acetate",Anaerobic Growth of Corynebacterium glutamicum via Mixed-Acid Fermentation,https://doi.org/10.1128/AEM.02413-15,Reported in representative; activity and species identity in manure not established.
+Corynebacterium,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,Lactate production,pos,Experimental,C. glutamicum,"Lactate, succinate, acetate",Anaerobic Growth of Corynebacterium glutamicum via Mixed-Acid Fermentation,https://doi.org/10.1128/AEM.02413-15,Reported in representative; activity and species identity in manure not established.
+Corynebacterium,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Corynebacterium,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+midas_g_34,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_34,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Clostridium_sensu_stricto_1,Bacteria,Polysaccharide hydrolysis,pos,Both,"C. butyricum Prazmowski","Soluble and resistant starch degradation by alpha-amylases and pullulanase","Clostridium butyricum Prazmowski can degrade and utilize resistant starch via a set of synergistically acting enzymes","https://doi.org/10.1128/msphere.00566-23","Genomic enzyme identification supported by biochemical hydrolysis assays and anaerobic growth experiments; supports starch degradation in a representative rather than all members of the plotted taxonomic group"
+Clostridium_sensu_stricto_1,Bacteria,Sugar fermentation,pos,Experimental,C. butyricum,"Glucose fermentation produces acetate, butyrate, H2 and lactate",A genetic and metabolic approach to redirection of biochemical pathways of Clostridium butyricum for enhancing hydrogen production,https://doi.org/10.1002/bit.24596,Reported in representative; no sample-specific species or activity confirmation.
+Clostridium_sensu_stricto_1,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Clostridium_sensu_stricto_1,Bacteria,VFA production,pos,Experimental,C. butyricum,"Glucose fermentation produces acetate, butyrate, H2 and lactate",A genetic and metabolic approach to redirection of biochemical pathways of Clostridium butyricum for enhancing hydrogen production,https://doi.org/10.1002/bit.24596,Reported in representative; no sample-specific species or activity confirmation.
+Clostridium_sensu_stricto_1,Bacteria,H2/formate production,pos,Experimental,C. butyricum,"Glucose fermentation produces acetate, butyrate, H2 and lactate",A genetic and metabolic approach to redirection of biochemical pathways of Clostridium butyricum for enhancing hydrogen production,https://doi.org/10.1002/bit.24596,Reported in representative; no sample-specific species or activity confirmation.
+Clostridium_sensu_stricto_1,Bacteria,Lactate production,pos,Experimental,C. butyricum,"Glucose fermentation produces acetate, butyrate, H2 and lactate",A genetic and metabolic approach to redirection of biochemical pathways of Clostridium butyricum for enhancing hydrogen production,https://doi.org/10.1002/bit.24596,Reported in representative; no sample-specific species or activity confirmation.
+Clostridium_sensu_stricto_1,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Clostridium_sensu_stricto_1,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Clostridium_sensu_stricto_1,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Clostridium_sensu_stricto_1,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,Sugar fermentation,pos,Experimental,E. rhusiopathiae,"Mainly lactate; minor acetate, formate and ethanol",Glucose Catabolism of Erysipelothrix rhusiopathiae,https://doi.org/10.1128/jb.95.6.2112-2116.1968,Reported in representative; activity and species identity in manure not established.
+Erysipelothrix,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,VFA production,pos,Experimental,E. rhusiopathiae,"Mainly lactate; minor acetate, formate and ethanol",Glucose Catabolism of Erysipelothrix rhusiopathiae,https://doi.org/10.1128/jb.95.6.2112-2116.1968,Reported in representative; activity and species identity in manure not established.
+Erysipelothrix,Bacteria,H2/formate production,pos,Experimental,E. rhusiopathiae,"Mainly lactate; minor acetate, formate and ethanol",Glucose Catabolism of Erysipelothrix rhusiopathiae,https://doi.org/10.1128/jb.95.6.2112-2116.1968,Reported in representative; activity and species identity in manure not established.
+Erysipelothrix,Bacteria,Lactate production,pos,Experimental,E. rhusiopathiae,"Mainly lactate; minor acetate, formate and ethanol",Glucose Catabolism of Erysipelothrix rhusiopathiae,https://doi.org/10.1128/jb.95.6.2112-2116.1968,Reported in representative; activity and species identity in manure not established.
+Erysipelothrix,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Erysipelothrix,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+midas_g_249,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_249,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Ca. Saccharimonas,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,Sugar fermentation,pos,Genomic,Ca. S. aalborgensis TM71,Sugar fermentation and lactate formation predicted,"Genome sequences of rare, uncultured bacteria obtained by differential coverage binning of multiple metagenomes",https://doi.org/10.1038/nbt.2579,Reported in representative; no sample-specific species or activity confirmation.
+Ca. Saccharimonas,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,Lactate production,pos,Genomic,Ca. S. aalborgensis TM71,Sugar fermentation and lactate formation predicted,"Genome sequences of rare, uncultured bacteria obtained by differential coverage binning of multiple metagenomes",https://doi.org/10.1038/nbt.2579,Reported in representative; no sample-specific species or activity confirmation.
+Ca. Saccharimonas,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Saccharimonas,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,Sugar fermentation,neg,Experimental,"S. saalensis ZF2T","Carbohydrates not utilized; amino acids and pyruvate utilized","Reclassification of Clostridium hydroxybenzoicum as Sedimentibacter hydroxybenzoicus gen. nov. comb. nov. and description of Sedimentibacter saalensis sp. nov.","https://doi.org/10.1099/00207713-52-3-801","Negative carbohydrate utilization in the tested representative; retain separate positive amino-acid catabolism assignment"
+Sedimentibacter,Bacteria,Peptide/AA catabolism,pos,Experimental,S. saalensis ZF2,Amino acids and pyruvate utilised; carbohydrates not utilised,Reclassification of Clostridium hydroxybenzoicum as Sedimentibacter hydroxybenzoicus and description of Sedimentibacter saalensis,https://doi.org/10.1099/00207713-52-3-801,Reported in representative; activity and species identity in manure not established.
+Sedimentibacter,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Sedimentibacter,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,Sugar fermentation,neg,Experimental,"A. delicata WN081T","Tested mono- and disaccharides not utilized as fermentative substrates","Anaerocella delicata gen. nov. sp. nov. a strictly anaerobic bacterium in the phylum Bacteroidetes isolated from a methanogenic reactor of cattle farms","https://doi.org/10.2323/jgam.58.405","Negative for tested carbohydrates including glucose fructose mannose cellobiose lactose and maltose; weak growth and medium dependence reported"
+Anaerocella,Bacteria,Peptide/AA catabolism,pos,Experimental,A. delicata WN081,"Acetate, propionate, branched acids, butyrate, H2","Anaerocella delicata gen. nov., sp. nov., a strictly anaerobic bacterium in the phylum Bacteroidetes isolated from a methanogenic reactor of cattle farms",https://doi.org/10.2323/jgam.58.405,Reported in representative; activity and species identity in manure not established.
+Anaerocella,Bacteria,VFA production,pos,Experimental,A. delicata WN081,"Acetate, propionate, branched acids, butyrate, H2","Anaerocella delicata gen. nov., sp. nov., a strictly anaerobic bacterium in the phylum Bacteroidetes isolated from a methanogenic reactor of cattle farms",https://doi.org/10.2323/jgam.58.405,Reported in representative; activity and species identity in manure not established.
+Anaerocella,Bacteria,H2/formate production,pos,Experimental,A. delicata WN081,"Acetate, propionate, branched acids, butyrate, H2","Anaerocella delicata gen. nov., sp. nov., a strictly anaerobic bacterium in the phylum Bacteroidetes isolated from a methanogenic reactor of cattle farms",https://doi.org/10.2323/jgam.58.405,Reported in representative; activity and species identity in manure not established.
+Anaerocella,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerocella,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Jeotgalibaca,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Peptide/AA catabolism,pos,Both,P. aeruginosa,Arginine fermentation; pyruvate to acetate/lactate primarily supports survival,Long-term anaerobic survival of the opportunistic pathogen Pseudomonas aeruginosa via pyruvate fermentation,https://doi.org/10.1128/JB.186.14.4596-4604.2004,Reported in representative; no sample-specific species or activity confirmation.
+Pseudomonas,Bacteria,VFA production,pos,Both,P. aeruginosa,Arginine fermentation; pyruvate to acetate/lactate primarily supports survival,Long-term anaerobic survival of the opportunistic pathogen Pseudomonas aeruginosa via pyruvate fermentation,https://doi.org/10.1128/JB.186.14.4596-4604.2004,Reported in representative; no sample-specific species or activity confirmation.
+Pseudomonas,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Lactate production,pos,Both,P. aeruginosa,Arginine fermentation; pyruvate to acetate/lactate primarily supports survival,Long-term anaerobic survival of the opportunistic pathogen Pseudomonas aeruginosa via pyruvate fermentation,https://doi.org/10.1128/JB.186.14.4596-4604.2004,Reported in representative; no sample-specific species or activity confirmation.
+Pseudomonas,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Pseudomonas,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,Sugar fermentation,pos,Experimental,A. laidlawii (formerly Mycoplasma laidlawii),"Lactate, acetate, CO2",Glucose metabolism of two strains of Mycoplasma laidlawii,https://doi.org/10.1128/jb.86.4.627-636.1963,Reported in representative; activity and species identity in manure not established.
+Acholeplasma,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,VFA production,pos,Experimental,A. laidlawii (formerly Mycoplasma laidlawii),"Lactate, acetate, CO2",Glucose metabolism of two strains of Mycoplasma laidlawii,https://doi.org/10.1128/jb.86.4.627-636.1963,Reported in representative; activity and species identity in manure not established.
+Acholeplasma,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,Lactate production,pos,Experimental,A. laidlawii (formerly Mycoplasma laidlawii),"Lactate, acetate, CO2",Glucose metabolism of two strains of Mycoplasma laidlawii,https://doi.org/10.1128/jb.86.4.627-636.1963,Reported in representative; activity and species identity in manure not established.
+Acholeplasma,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Acholeplasma,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Unclassified Planococcaceae ASV33,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Unclassified Planococcaceae ASV33,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Rikenellaceae_RC9_gut_group,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Anaerovorax,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,Sugar fermentation,neg,Experimental,"A. odorimutans NorPut1T","Tested sugars did not support growth; putrescine and 4-aminobutyrate utilized","Anaerovorax odorimutans gen. nov. sp. nov. a putrescine-fermenting strictly anaerobic bacterium","https://doi.org/10.1099/00207713-50-4-1591","Negative for tested sugars; amino-acid catabolism must not be marked negative because 4-aminobutyrate is utilized"
+Anaerovorax,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,VFA production,pos,Experimental,A. odorimutans NorPut1,"Acetate, butyrate, H2, ammonia from putrescine","Anaerovorax odorimutans gen. nov., sp. nov., a putrescine-fermenting, strictly anaerobic bacterium",https://doi.org/10.1099/00207713-50-4-1591,Reported in representative; activity and species identity in manure not established.
+Anaerovorax,Bacteria,H2/formate production,pos,Experimental,A. odorimutans NorPut1,"Acetate, butyrate, H2, ammonia from putrescine","Anaerovorax odorimutans gen. nov., sp. nov., a putrescine-fermenting, strictly anaerobic bacterium",https://doi.org/10.1099/00207713-50-4-1591,Reported in representative; activity and species identity in manure not established.
+Anaerovorax,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Anaerovorax,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+midas_g_9246,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,Sugar fermentation,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,Peptide/AA catabolism,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,VFA production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,H2/formate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,Lactate production,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+midas_g_9246,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Excluded from functional transfer; leave blank in plot.
+Peptostreptococcus,Bacteria,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,Sugar fermentation,pos,Experimental,P. anaerobius ATCC 27337,Proline-dependent glucose and alanine metabolism,Proline requirement for glucose utilization by Peptostreptococcus anaerobius ATCC 27337,https://doi.org/10.1128/iai.55.2.352-357.1987,Reported in representative; activity and species identity in manure not established.
+Peptostreptococcus,Bacteria,Peptide/AA catabolism,pos,Experimental,P. anaerobius ATCC 27337,Proline-dependent glucose and alanine metabolism,Proline requirement for glucose utilization by Peptostreptococcus anaerobius ATCC 27337,https://doi.org/10.1128/iai.55.2.352-357.1987,Reported in representative; activity and species identity in manure not established.
+Peptostreptococcus,Bacteria,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Peptostreptococcus,Bacteria,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,CO2-reducing methanogenesis,pos,Both,M. ruminantium M1,Methane from H2/CO2; formate metabolism,The genome sequence of the rumen methanogen Methanobrevibacter ruminantium reveals new possibilities for controlling ruminant methane emissions,https://doi.org/10.1371/journal.pone.0008926,Reported in representative; activity and species identity in manure not established.
+Methanobrevibacter,Archaea,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanobrevibacter,Archaea,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosarcina,Archaea,Acetoclastic methanogenesis,pos,Experimental,M. barkeri,Methane; substrate-dependent hydrogen cycling,Energy Conservation via Hydrogen Cycling in the Methanogenic Archaeon Methanosarcina barkeri,https://doi.org/10.1128/mBio.01256-18,Reported in representative; activity and species identity in manure not established.
+Methanosarcina,Archaea,Methyl dismutation methanogenesis,pos,Experimental,M. barkeri,Methane; substrate-dependent hydrogen cycling,Energy Conservation via Hydrogen Cycling in the Methanogenic Archaeon Methanosarcina barkeri,https://doi.org/10.1128/mBio.01256-18,Reported in representative; activity and species identity in manure not established.
+Methanosarcina,Archaea,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanosphaera,Archaea,H2-dependent methyl methanogenesis,pos,Both,M. stadtmanae DSM 3091,"Methanol + H2 to methane; acetate assimilated, not cleaved to methane",The Genome Sequence of Methanosphaera stadtmanae Reveals Why This Human Intestinal Archaeon Is Restricted to Methanol and H2 for Methane Formation and ATP Synthesis,https://doi.org/10.1128/JB.188.2.642-658.2006,Reported in representative; activity and species identity in manure not established.
+Methanocorpusculum,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,CO2-reducing methanogenesis,pos,Experimental,M. labreanum Z,Methane from H2/CO2 or formate,Isolation and Characterization of Methanocorpusculum labreanum sp. nov.,https://doi.org/10.1099/00207713-39-1-10,Reported in representative; activity and species identity in manure not established.
+Methanocorpusculum,Archaea,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanocorpusculum,Archaea,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,Methyl dismutation methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Ca. Methanoplasma,Archaea,H2-dependent methyl methanogenesis,pos,Both,Ca. M. termitum MpT1,Methanol or monomethylamine + H2 to methane,New Mode of Energy Metabolism in the Seventh Order of Methanogens as Revealed by Comparative Genome Analysis of Candidatus Methanoplasma termitum,https://doi.org/10.1128/AEM.03389-14,Reported in representative; activity and species identity in manure not established.
+Methanomethylovorans,Archaea,Polysaccharide hydrolysis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,Sugar fermentation,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,Peptide/AA catabolism,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,VFA production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,H2/formate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,Lactate production,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,CO2-reducing methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,Acetoclastic methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
+Methanomethylovorans,Archaea,Methyl dismutation methanogenesis,pos,Experimental,M. hollandica DMS1,"Methanol, methylamines, DMS and methanethiol; no H2/CO2 or acetate growth","Isolation and Characterization of Methanomethylovorans hollandica gen. nov., sp. nov.",https://doi.org/10.1128/AEM.65.8.3641-3650.1999,Reported in representative; activity and species identity in manure not established.
+Methanomethylovorans,Archaea,H2-dependent methyl methanogenesis,unknown,None,,,,,Not established in this curated table; unknown is not negative.
